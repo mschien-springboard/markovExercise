@@ -16,7 +16,7 @@ function generateText(text) {
 
 
 function makeText(path) {
-  fs.readFile(path, "utf8", function cb(err, data) {
+  fs.readFile(path, "utf8", (err, data) => {
     if (err) {
       console.error(`Cannot read file: ${path}: ${err}`);
       process.exit(1);
@@ -30,12 +30,10 @@ function makeText(path) {
 
 
 async function makeURLText(url) {
-  let resp;
-
   try {
     resp = await axios.get(url);
-  } catch (err) {
-    console.error(`Cannot read URL: ${url}: ${err}`);
+  } catch (e) {
+    console.e(`Cannot read URL: ${url}: ${e}`);
     process.exit(1);
   }
   generateText(resp.data)
